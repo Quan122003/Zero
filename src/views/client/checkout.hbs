@@ -1,0 +1,231 @@
+<div id="wap">
+    <form id="wap-content" method="post" action="">
+        <div id="main">
+
+            <div class="logo-left">
+                <h1 class="shop_name"><a href="">T-SIX FURNITURE</a></h1>
+            </div>
+
+            <h2 class="section_title">Thông tin nhận hàng</h2>
+            <div id="main-content">
+                <div class="col section">
+
+                    <div class="field">
+                        <div class="field_input-wrap">
+                            <label for="">Họ tên</label>
+                            <input type="text" class="field_input" name="name" placeholder="Họ và tên" value="{{dataUser.name}}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="field_input-wrap">
+                            <label for="">Email</label>
+                            <input type="text" class="field_input" placeholder="Email" value="{{dataUser.email}}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="field_input-wrap">
+                            <label for="">Sđt</label>
+                            <input type="text" class="field_input" placeholder="Số điện thoại" name="phone"
+                                value="{{dataUser.phone}}">
+                        </div>
+                    </div>
+                    <label for="">Địa chỉ nhận hàng</label>
+                    <div class="field">
+                        <textarea name="address" id="" cols="30" rows="10" placeholder="Thành phố, quận huyện, phường xã, số nhà, tên đường,..">{{dataUser.address}}</textarea>
+                    </div>
+                </div>
+
+
+                <div class="col article ">
+                    <h2 class="article_title_ship">Hình thức & thanh toán</h2>
+                    <div class="radio_input">
+                        <input checked type="radio" id="" name="payment" value="COD">
+                        <label for="" class="radio_label">
+                            <span class="radio_label_primary">Giao hàng tận nơi, thanh toán khi giao hàng (COD)</span>
+                        </label>
+                    </div>
+                    <div class="radio_input">
+                        <input type="radio" id="" name="payment" value="direct">
+                        <label for="" class="radio_label">
+                            <span class="radio_label_primary">Nhận & thanh toán tại cửa hàng</span>
+                        </label>
+                    </div>
+                    <div class="field">
+                        <label for="">Ghi chú đơn hàng</label>
+                        <div class="field_input-wrap">
+                            <textarea name="note" id="" cols="20" rows="3" style="padding: 10px;"
+                                placeholder="Ghi chú (tùy chọn)"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="aside">
+
+            <h2 class="aside_title">Đơn hàng (<span id="count">1</span> sản phẩm)</h2>
+
+            <div class="oder_sumary">
+                <table class="product-table">
+                    <caption class="visually-hidden">Chi tiết đơn hàng</caption>
+                    <thead class="product-table__header">
+                        <tr>
+                            <th>
+                                <span class="visually-hidden">Ảnh sản phẩm</span>
+                            </th>
+                            <th>
+                                <span class="visually-hidden">Mô tả</span>
+                            </th>
+                            <th>
+                                <span class="visually-hidden">Sổ lượng</span>
+                            </th>
+                            <th>
+                                <span class="visually-hidden">Đơn giá</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="cart-body">
+                        <tr class="product">
+                            <th class="product__image">
+                                <div class="product-thumbnail">
+                                    <div class="product-thumbnail__wrapper">
+                                        <img src="./images/sp.jpg" width="80px" height="80px">
+                                    </div>
+                                </div>
+                            </th>
+                            <th class="product__description">
+                                <span class="product__description__name">
+                                    Ghế Luxury
+                                </span>
+
+                            </th>
+                            <td class="product__quantity visually-hidden"><em>Số lượng:</em> 112</td>
+                            <td class="product__price">
+                                570.000₫
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <div class="field">
+                    <div class="field_input-wrapper">
+                        <input class="field_input_sale" type="text" placeholder="Nhập mã giảm giá">
+                        <button class="field_button">Áp dụng</button>
+                    </div>
+                </div>
+
+                <table class="total_line_table">
+                    <caption class="visually-hidden">Tổng giá trị</caption>
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot class="total-price">
+                        <tr>
+                            <th>Tổng cộng</th>
+                            <td class="price" id="total">540.000đ</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <button type="submit" class="btn-buy">ĐẶT HÀNG NGAY</button>
+
+            </div>
+
+            <div class="back">
+                <a href="{{ROOT_URL}}/product" class="buy"><i class="fa-solid fa-arrow-left"></i> Mua thêm sản phẩm</a>
+                <a href="{{ROOT_URL}}" class="backhome"><i class="fa-solid fa-arrow-left"></i> Home</a>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script>
+    let cartItems = [];
+    const getCart = function () {
+        cartItems = JSON.parse(localStorage.getItem('cart'))
+        
+    }
+    $(document).ready(function () {
+        const cartBody = $('.product');
+        const totalPriceElement = $('#total');
+        
+        
+        function renderCart() {
+            getCart()
+            if(cartItems == null || cartItems == []){
+                return window.location.href = `{{ROOT_URL}}`
+            }
+
+            console.log('rendering')
+            cartBody.empty()
+            let totalAmount = cartItems.reduce((total, product) => {
+                return total + (product.price * product.qt);
+            }, 0);
+            totalPriceElement.text(totalAmount.toLocaleString() + ' đ');
+            $('#count').text(cartItems.length)
+            $.each(cartItems, function (index, item) {
+                const newCartItem = `
+                <tr class="product">
+                            <th class="product__image">
+                                <div class="product-thumbnail">
+                                    <div class="product-thumbnail__wrapper">
+                                        <img src="${item.image}" width="80px" height="80px">
+                                    </div>
+                                </div>
+                            </th>
+                            <th class="product__description"> <em>(x${item.qt})</em>
+                                <span class="product__description__name">
+                                    ${item.name_pd}
+                                </span>
+
+                            </th>
+                            <td class="product__price"> 
+                                ${item.price.toLocaleString()} đ
+                            </td>
+                        </tr>
+            `;
+                cartBody.append(newCartItem);
+
+                //totalPrice += item.price;
+            });
+
+            // totalPriceElement.text(totalPrice.toLocaleString() + ' đ');
+        }
+
+        renderCart();
+    })
+    $('#wap-content').submit(function(e) {
+    e.preventDefault(); // Ngăn mặc định submit form
+
+    let formDataArray = $(this).serializeArray(); // Thu thập dữ liệu từ form
+    let formDataObject = {};
+    // Chuyển đổi mảng thành đối tượng JavaScript
+    $(formDataArray).each(function(index, obj){
+        formDataObject[obj.name] = obj.value;
+    });
+    const orderList = cartItems.map(({ id_pd, qt }) => ({ id_pd, qt }));
+    formDataObject.orderList = orderList
+    console.log(formDataObject)
+    // Yêu cầu AJAX POST
+    $.ajax({
+        url: `{{ROOT_URL}}/checkout`, // Thay 'url_của_bạn' bằng URL của bạn
+        type: 'POST',
+        data: formDataObject,
+        success: function(response) {
+            // Xử lý kết quả thành công
+            window.location.href = `{{ROOT_URL}}`
+        },
+        error: function(xhr, status, error) {
+            // Xử lý khi có lỗi xảy ra
+            console.error('Lỗi yêu cầu:', error);
+        }
+    });
+});
+</script>

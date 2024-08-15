@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error</title>
+  {{>admin/a_head}}
+</head>
+
+<body>
+  {{{body}}}
+  <script>
+    const goBackLink = document.getElementById('goBackLink');
+    goBackLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.history.back();
+    });
+  </script>
+</body>
+
+</html>

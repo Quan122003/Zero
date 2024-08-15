@@ -1,0 +1,33 @@
+<div class="content-content">
+    <div class="container-content">
+        <section class="news">
+            <div class="container-news">
+                <div class="title-news">
+                    <p>TIN TỨC MỚI NHẤT</p>
+                </div>
+                <div class="container-news-box">
+                    {{#each dataPosts}}
+                    <div class="news-box">
+                        <div class="image-box">
+                            <a href="{{ROOT_URL}}/post/{{this.id_post}}"> <img src="{{this.image}}" alt="{{this.title}}"></a>
+                        </div>
+                        <div class="up-news">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <span class="up-text"><strong>ĐĂNG BỞI: T-SIX FURNITURE</strong></span>
+                        </div>
+                        <div class="text-box">
+                            <div class="title">
+                                <a href="{{ROOT_URL}}/post/{{this.id_post}}"> {{this.title}}</a>
+                            </div>
+                            <div class="des">
+                                <a href>{{this.content}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {{/each}}
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

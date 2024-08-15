@@ -1,0 +1,241 @@
+<div class="content-content">
+    <div class="container-content">
+        <div class="container-product_details">
+            <div class="product_details">
+                <div class="product_details-left">
+                    <div class="image-main">
+                        <div class="image">
+                            <img src="{{dataProduct.image}}" alt="{{dataProduct.name_pd}}">
+                        </div>
+                    </div>
+
+                    <div class="image-small">
+                        {{#each imgs}}
+                        <div class="image">
+                            <img src="{{this.url}}" alt="{{this.alt}}">
+                        </div>
+                        {{/each}}
+
+                    </div>
+                </div>
+
+                <div class="product_details-right">
+                    <h1 class="title-details">{{dataProduct.name_pd}}</h1>
+                    <span class="supplier">Nhà cung cấp: <span
+                            class="supplier-weight">{{dataProduct.brand}}</span></span>
+                    
+                    <div class="price-details">
+                        <span class="price">{{formatNumber dataProduct.price}}<span>đ</span></span>
+                    </div>
+                    <span class="supplier">Chất liệu: <span
+                            class="supplier-weight">{{dataProduct.material}}</span></span>
+                    <div class="description-compact">
+                        <p>{{dataProduct.description}}</p> <span class="seeMore"><a href="#linkin-description">Xem
+                                thêm nội dung</a></span>
+                    </div>
+                    
+                    <div class="notification">
+                        <span>Cam kết 100% sản phẩm được đóng gói kĩ càng và được kiểm tra sản phẩm trước khi
+                            nhận
+                            hàng</span>
+                    </div>
+
+                    <div class="size-product_details">
+                        <div class="size">
+                            <span>Kích thước</span>
+                        </div>
+                        <div class="small">
+                            <input type="radio" value="Nhỏ" id="size-m" name="">
+                            <label for="size-m">{{dataProduct.size}}</label>
+                        </div>
+                    </div>
+                    <div class="supplier">
+                        <span>Kho: </span><label for="size-m">{{dataProduct.inventory}}</label>
+                    </div>
+                    <div class="details-btn">
+                        <button class="buy_btn" data-id="{{dataProduct.slug}}">Mua ngay</button>
+                        <button class="add_btn addToCart" data-id="{{dataProduct.slug}}">thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-product_details">
+                <div class="description">
+                    <h3 id="linkin-description">Mô tả sản phẩm</h3>
+                    <p>{{dataProduct.description}}</p>
+                </div>
+                <div class="wrapper-comment">
+                    <div class="comment-contain">
+                        <h2 class="comment-title">Bình luận tại đây</h2>
+                        <!-- comment -->
+                        <div class="comment-inner">
+                            <div class="comment-form ">
+
+                                {{#if user}}
+                                   <form action="" method="post">
+                                    <div class="form-comment">
+                                        <textarea name="content" cols="30" rows="8" class="form-control"
+                                            placeholder="Nhập nội dung bình luận của bạn"></textarea>
+                                    </div>
+
+                                    <div class="submit-btn">
+                                        <button type="submit" id="addComment" class="btn-comment">Bình luận</button>
+                                    </div>
+
+                                </form>
+                                {{else}}
+                                   <h2>Vui lòng <a style="color: orange;" href="{{ROOT_URL}}/login">đăng nhập</a> để bình luận</h2>
+                                {{/if}}
+                                
+                            </div>
+
+                            {{!-- Hiện ra khi Người dùng bình luận --}}
+                            {{#each cmts}}
+                            <div class="comment-info">
+                                <div class="avatar">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
+                                        alt="">
+                                </div>
+                                <div class="content">
+                                    <div class="info-contain">
+                                        <h6 class="author">{{this.name}}
+                                        </h6>
+                                        <p class="date">({{formatDate this.createdAt}})</p>
+                                    </div>
+
+                                    <div class="text-comment">
+                                        {{this.content}}
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                            
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+                </div>
+                <div class="warrantyPolicy">
+                    <h3>Chính sách bảo hành</h3>
+                    <div class="policy-regime">
+                        <strong>A. CHẾ ĐỘ VÀ THỜI GIAN BẢO HÀNH ĐỒ NỘI THẤT</strong>
+                        <p><a href="./index.html">T-SIX FURNITURE</a> chỉ nhận bảo hành đối với các sản phẩm do
+                            chúng tôi trực tiếp phân
+                            phối –
+                            sản xuất và còn trong thời hạn bảo hành. Việc bảo hành sẽ tùy theo trường hợp cụ thể
+                            mà
+                            chúng tôi sẽ thay thế mới hoàn toàn hoặc giới hạn việc sửa chữa, thay thế phụ tùng.
+                        </p>
+                        <p>Chúng tôi chỉ bảo hành đối với những lỗi gây ra do nhà sản xuất trong quá trình sản
+                            xuất
+                            như lỗi kỹ thuật.</p>
+                        <p>Thời hạn bảo hành theo phiếu bảo hành do <a href="./index.html">T-SIX FURNITURE</a>
+                            cung cấp cho Quý khách.</p>
+                        <p>Thời gian bảo hành đồ nội thất bằng gỗ là 12 tháng, chỉ bảo hành kỹ thuật, không bảo
+                            hành
+                            gỗ bị hư do mối mọt, vô nước, biến dạng do va đập mạnh, trầy xước do tiếp xúc vật
+                            nhọn
+                            trong quá trình sử dụng.</p>
+                        <p>Thời gian bảo hành: 9h-6h00 tất cả các ngày trong tuần (từ thứ 2 - chủ nhật) Chúng
+                            tôi sẽ
+                            phản hồi đã tiếp nhận yêu cầu bảo hành của khách hang trong 3 giờ làm việc.Tiến hành
+                            bảo
+                            hành từ 3-7 ngày làm việc</p>
+                    </div>
+                    <div class="note-policy">
+                        <strong>B. CÁC TRƯỜNG HỢP KHÔNG ĐƯỢC BẢO HÀNH ĐỒ NỘI THẤT</strong>
+
+                        <p>Sản phẩm bị hỏng do lỗi của người sử dụng hoặc có dấu hiệu sửa chữa trước khi mang
+                            đến <a href="./index.html">T-SIX FURNITURE</a>. Bất kì sự tự ý thay đổi, sửa chữa
+                            nào từ phía khách hàng mà không
+                            do nhân viên kỹ thuật của <a href="./index.html">T-SIX FURNITURE</a> hướng dẫn cũng
+                            không được chấp nhận.</p>
+                        <p>Không có phiếu bảo hành hoặc trường hợp Sản phẩm hết thời hạn bảo hành.</p>
+                        <p>Phiếu bảo hành không hợp lệ: bị rách, bị sửa đổi hoặc không xác định được</p>
+                        <p>Sản phẩm bảo quản không đúng hướng dẫn và vệ sinh sản phẩm không đúng cách.</p>
+                        <p>Sản phẩm bị trầy xước hư hỏng do sử dụng không cẩn thận (Ví dụ: kéo lê sản phẩm, đứng
+                            lên bàn hoặc ghế.....)</p>
+                        <p>Bảo hành không áp dụng cho hao mòn thông thường sau một thời gian sử dụng ( Ví dụ:
+                            phai mờ, rỉ sét...)</p>
+                        <p>Sản phẩm bị biến dạng do môi trường bên ngoài bất thường (môi trường ẩm ướt, khô
+                            nóng)</p>
+                        <p>Không áp dụng chính sách bảo hành cho các đơn hàng có đóng mộc hàng không bảo hành,
+                            hàng
+                            khuyến mãi hoặc hàng thanh lý.</p>
+                    </div>
+                    <div class="procedure-policy">
+                        <strong>C. QUY TRÌNH BẢO HÀNH ĐỒ NỘI THẤT</strong>
+
+                        <p>Đối với những sản phẩm có kích thước và trong lượng nhẹ, <a href="./index.html">T-SIX
+                                FURNITURE</a> trực tiếp bảo
+                            hành ngay tại kho. Quý khách vui lòng mang sản phẩm đến để được nhân viên kỹ thuật
+                            của chúng tôi sửa chữa miễn phí.</p>
+                        <p>Đối với những đơn hàng lớn, hoặc quá cồng kềnh, <a href="./index.html">T-SIX
+                                FURNITURE</a> sẽ tiến hành bảo hành tận
+                            nơi cho khách hàng trong nội thành TPHCM. Đối với các đơn hàng ngoại tỉnh, sẽ bảo
+                            hành khi có đơn hàng gần địa điểm người mua hoặc <a href="./index.html">T-SIX
+                                FURNITURE</a> sẽ chuyển phát nhanh
+                            phụ kiện thay thế cho khách hàng.</p>
+                        <p>Ngoài ra, để đảm bảo quyền lợi của khách hàng, <a href="./index.html">T-SIX
+                                FURNITURE</a> sẽ xem xét các trường hợp
+                            cụ thể với điều kiện bảo hành phù hợp .Trong điều kiện sản phẩm bị hư hỏng, mất mát
+                            trong quá trình sử dụng, <a href="./index.html">T-SIX FURNITURE</a> sẽ hỗ trợ, cung
+                            cấp các chi tiết, linh kiện
+                            tương tự để thay thế và có chức năng tương đương. Đội ngũ kĩ thuật chuyên nghiệp,
+                            tay nghề cao của Nội thất <a href="./index.html">T-SIX FURNITURE</a> luôn sẵn sàng
+                            phục vụ quý khách tận tình nhất
+                        </p>
+                        <p>Đề nghị quý khách kiểm tra hàng trước khi thanh toán. Để yêu cầu bảo hành sản phẩm,
+                            Quý khách vui lòng cung cấp đầy đủ thông tin về tình trạng hàng hóa bằng cách gửi
+                            hình ảnh vào mail: huypp642003@gmail.com hoặc <strong
+                                style="display: inline;">Hotline</strong>: 0898877604,
+                            để nhân viên chăm
+                            sóc khách hàng gọi lại
+                            trong thời gian sớm nhất. Chúng tôi xin chân thành cảm ơn!</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="related-products">
+                <div class="title">
+                    <h3>Sản phẩm liên quan</h3>
+                </div>
+                <div class="product-new-listing">
+                    {{#each pds2}}
+                    <div class="box">
+                        <div class="image-box">
+                            <div class="image">
+                                <img src="{{this.image}}" alt="New-Product">
+                            </div>
+                            <div class="overlay-btn">
+                                <a href>
+                                    <button class="btn">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="text-box">
+                            <a href="{{ROOT_URL}}/product-details/{{this.slug}}">
+                                <h2 class="item">{{this.name_pd}}</h2>
+                            </a>
+                            <a href="{{ROOT_URL}}/product-details/{{this.slug}}">
+                                <h3 class="price-prd">{{formatNumber this.price}}<span>₫</span></h3>
+                            </a>
+                        </div>
+                    </div>
+                    {{/each}}
+                    
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
